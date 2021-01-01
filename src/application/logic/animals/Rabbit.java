@@ -7,20 +7,11 @@ public class Rabbit extends Animal {
     @Override
     public void DoTask(Iterator iterator) {
         this.Jump(iterator, 1);
-        this.health = this.health - 30;
+        this.health = this.health - 1;
         System.out.println("New health == " + this.health);
         if (health <= 0) {
             System.out.println("Death by health <= 0");
             this.Kill(iterator);
-        } else {
-            Random rand = new Random();
-            int chance = rand.nextInt(3) + 1; // 1, 2, 3
-            System.out.println("Rolled " + chance);
-            if (chance == 1)
-            {
-                this.Kill(iterator);
-                System.out.println("Death by chance == 1");
-            }
         }
 
     }
@@ -47,7 +38,8 @@ public class Rabbit extends Animal {
         Coordinates old = this.coords;
         Coordinates newCoords;
         do {
-            newCoords = new Coordinates(old.x + r.nextDouble() * 2 - Jump_size,old.y + r.nextDouble() * 2 - Jump_size);
+            newCoords = new Coordinates(old.x + r.nextDouble() * 2 * Jump_size - Jump_size,old.y +
+                    r.nextDouble() * 2 * Jump_size - Jump_size);
         } while(newCoords.x < 0 || newCoords.y < 0);
         this.coords = newCoords;
     }

@@ -2,18 +2,22 @@ package application.logic;
 import application.logic.animals.Animal;
 import application.logic.animals.Rabbit;
 import application.logic.animals.Coordinates;
+import application.windowInterface.WindowHandler;
+
+import javax.swing.*;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 
 public class SimulationHandler {
+    public static ArrayDeque<Animal> animals;
     private static SimulData CurrentBestRun = new SimulData(0,0,0);
-    public SimulationHandler()
+    public SimulationHandler() throws InterruptedException
     {
         CurrentBestRun = new SimulData(0, 0, 0);
     }
     public static SimulData SimulateUntilConditions (
             /*Initialized vars*/
-        )
+        ) throws InterruptedException
     {
         // Initialize variables
         InitializeVariables();
@@ -37,16 +41,18 @@ public class SimulationHandler {
         // Return best simulation's data
         return CurrentBestRun;
     }
-    private static int RunSimulation(SimulData Data)
+    private static int RunSimulation(SimulData Data) throws InterruptedException
     {
         System.out.println("Running next simulation with rabbits = " + Data.RabbitsCount);
         // Count of tasks = time since this simulation had started
         int CompletedTasksCount = 0;
         // Creating queue (FIFO) of all the animals alive on the field
-        ArrayDeque<Animal> animals= new ArrayDeque<Animal>();
+        //ArrayDeque<Animal> animals= new ArrayDeque<Animal>();
+        animals= new ArrayDeque<Animal>();
         // Adding base amount of animals
-        QueueAddRabbits(Data.RabbitsCount, animals, 50);
+        QueueAddRabbits(Data.RabbitsCount, animals, 3000);
         // Main routine
+        WindowHandler window = WindowHandler.CreateWindow();
         while (animals.size() != 0 && CompletedTasksCount < Integer.MAX_VALUE) // TODO: not safe cuz movescount
         {
             CompletedTasksCount++;
@@ -55,6 +61,9 @@ public class SimulationHandler {
                 Animal animal = (Animal)iterator.next();
                 animal.DoTask(iterator);
             }
+            window.repaint();
+            //Thread.sleep(1000);
+            Thread.sleep(10);
         }
 
         return CompletedTasksCount;
@@ -71,12 +80,12 @@ public class SimulationHandler {
     }
     private static int getMaximumExperimentsCount()
     {
-        return 10;
+        return 1;
     }
     private static void QueueAddRabbits(int n, ArrayDeque<Animal> animals, int baseHealth) // Adds to random x y coordinates
     {
         for (int i = 0; i < n; i++) {
-            Rabbit rabbit = new Rabbit(baseHealth, new Coordinates(0, 0)); // TODO : make it random x y
+            Rabbit rabbit = new Rabbit(baseHealth, new Coordinates(500, 400)); // TODO : make it random x y
             animals.add(rabbit);
         }
     }
