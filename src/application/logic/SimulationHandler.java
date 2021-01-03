@@ -1,8 +1,5 @@
 package application.logic;
-import application.logic.animals.Animal;
-import application.logic.animals.Rabbit;
-import application.logic.animals.Coordinates;
-import application.logic.animals.Wolf;
+import application.logic.animals.*;
 import application.windowInterface.WindowHandler;
 
 import java.util.Iterator;
@@ -10,6 +7,7 @@ import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class SimulationHandler {
+    public static int BestTime;
     //public static final int basevar = 100;
     public static LinkedBlockingQueue<Animal> animals;
     private static SimulData CurrentBestRun = new SimulData(0,0,0);
@@ -25,8 +23,7 @@ public class SimulationHandler {
         InitializeVariables();
         // Start main routine
         int Iterations = 0;
-        int BestTime = 0;
-        SimulData CurrentRunData = new SimulData(20, 2, 0); // TODO : should not be 0 0 0
+        SimulData CurrentRunData = new SimulData(20, 2, 10); // TODO : should not be 0 0 0
         // Lets run our simulation routine to figure out the best possible starting variables
         while (!IsSatisfied() && Iterations < getMaximumExperimentsCount())
         {
@@ -54,6 +51,7 @@ public class SimulationHandler {
         // Adding base amount of animals
         QueueAddRabbits(Data.RabbitsCount, animals, 1000, width, height);
         QueueAddWolfs(Data.WolfsCount, animals, 3000, width, height);
+        QueueAddGrass(Data.GrassCount, animals, 100, width, height);
         // Main routine
         WindowHandler window = WindowHandler.CreateWindow(width,height);
         while (animals.size() != 0 && CompletedTasksCount < Integer.MAX_VALUE) // TODO: not safe cuz movescount
@@ -75,6 +73,7 @@ public class SimulationHandler {
         CurrentBestRun.RabbitsCount = 0;
         CurrentBestRun.WolfsCount = 0;
         CurrentBestRun.GrassCount = 0;
+        BestTime = 0;
     }
     private static boolean IsSatisfied()
     {
@@ -100,6 +99,15 @@ public class SimulationHandler {
             Coordinates coords = new Coordinates(rand.nextInt(width + 1), rand.nextInt(height + 1));
             Wolf wolf = new Wolf(baseHealth, coords);
             animals.add(wolf);
+        }
+    }
+    private static void QueueAddGrass(int n, LinkedBlockingQueue<Animal> animals, int baseHealth, int width, int height) // Adds to random x y coordinates
+    {
+        Random rand = new Random();
+        for (int i = 0; i < n; i++) {
+            Coordinates coords = new Coordinates(rand.nextInt(width + 1), rand.nextInt(height + 1));
+            Grass grass = new Grass(baseHealth, coords);
+            animals.add(grass);
         }
     }
 

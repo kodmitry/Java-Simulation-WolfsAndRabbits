@@ -2,6 +2,7 @@ package application.windowInterface;
 
 import application.logic.SimulationHandler;
 import application.logic.animals.Animal;
+import application.logic.animals.Grass;
 import application.logic.animals.Rabbit;
 import application.logic.animals.Wolf;
 
@@ -13,7 +14,7 @@ import javax.swing.JPanel;
 
 public class WindowHandler extends JPanel {
     enum AnimalColors {
-        RABBIT(Color.orange), WOLF(Color.red);
+        RABBIT(Color.orange), WOLF(Color.red), GRASS(Color.green);
         private Color color;
         AnimalColors(Color color)
         {
@@ -36,6 +37,9 @@ public class WindowHandler extends JPanel {
             }
             if (animal instanceof Wolf) {
                 g2d.setColor(AnimalColors.WOLF.color);
+            }
+            if (animal instanceof Grass) {
+                g2d.setColor(AnimalColors.GRASS.color);
             }
             g2d.fillOval((int)animal.coords.x, (int)animal.coords.y, 7, 7);
         }
