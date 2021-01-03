@@ -1,17 +1,20 @@
 package application.logic.animals;
 
+import application.logic.SimulationHandler;
+
 import java.util.Iterator;
 import java.util.Random;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class Rabbit extends Animal {
     @Override
-    public void DoTask(Iterator iterator) {
+    public void DoTask(Iterator iterator, LinkedBlockingQueue<Animal> animals) {
         this.Jump(iterator, 1);
         this.health = this.health - 1;
         System.out.println("New health == " + this.health);
-        if (health <= 0) {
-            System.out.println("Death by health <= 0");
-            this.Kill(iterator);
+        if (health % 50 == 0) {
+            System.out.println("Creating new rabbit");
+            this.Reproduce(animals);
         }
 
     }
@@ -20,9 +23,10 @@ public class Rabbit extends Animal {
         this.coords = coords;
     }
     @Override
-    public void Reproduce()
+    public void Reproduce(LinkedBlockingQueue<Animal> animals)
     {
-
+        Rabbit rabbit = new Rabbit(50, new Coordinates(100,100));
+        animals.add(rabbit);
     }
 
     @Override

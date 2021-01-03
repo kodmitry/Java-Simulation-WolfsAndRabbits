@@ -6,8 +6,8 @@ import application.logic.animals.Animal;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.ArrayDeque;
 import java.util.Iterator;
+import java.util.concurrent.LinkedBlockingQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -23,7 +23,7 @@ public class WindowHandler extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        ArrayDeque<Animal> animals = SimulationHandler.animals;
+        LinkedBlockingQueue<Animal> animals = SimulationHandler.animals;
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,

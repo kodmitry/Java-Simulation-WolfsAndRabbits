@@ -7,9 +7,11 @@ import application.windowInterface.WindowHandler;
 import javax.swing.*;
 import java.util.ArrayDeque;
 import java.util.Iterator;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class SimulationHandler {
-    public static ArrayDeque<Animal> animals;
+    //public static final int basevar = 100;
+    public static LinkedBlockingQueue<Animal> animals;
     private static SimulData CurrentBestRun = new SimulData(0,0,0);
     public SimulationHandler() throws InterruptedException
     {
@@ -48,7 +50,7 @@ public class SimulationHandler {
         int CompletedTasksCount = 0;
         // Creating queue (FIFO) of all the animals alive on the field
         //ArrayDeque<Animal> animals= new ArrayDeque<Animal>();
-        animals= new ArrayDeque<Animal>();
+        animals= new LinkedBlockingQueue<Animal>();
         // Adding base amount of animals
         QueueAddRabbits(Data.RabbitsCount, animals, 3000);
         // Main routine
@@ -59,7 +61,7 @@ public class SimulationHandler {
             Iterator iterator = animals.iterator();
             while (iterator.hasNext()) {
                 Animal animal = (Animal)iterator.next();
-                animal.DoTask(iterator);
+                animal.DoTask(iterator, animals);
             }
             window.repaint();
             //Thread.sleep(1000);
@@ -82,7 +84,7 @@ public class SimulationHandler {
     {
         return 1;
     }
-    private static void QueueAddRabbits(int n, ArrayDeque<Animal> animals, int baseHealth) // Adds to random x y coordinates
+    private static void QueueAddRabbits(int n, LinkedBlockingQueue<Animal> animals, int baseHealth) // Adds to random x y coordinates
     {
         for (int i = 0; i < n; i++) {
             Rabbit rabbit = new Rabbit(baseHealth, new Coordinates(500, 400)); // TODO : make it random x y
