@@ -15,9 +15,7 @@ public class SimulationHandler {
     {
         CurrentBestRun = new SimulData(0, 0, 0);
     }
-    public static SimulData SimulateUntilConditions (
-            int width, int height
-        ) throws InterruptedException
+    public static SimulData SimulateUntilConditions (int width, int height) throws InterruptedException
     {
         // Initialize variables
         InitializeVariables();

@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class Rabbit extends Animal {
     @Override
     public void DoTask(Iterator iterator, LinkedBlockingQueue<Animal> animals) {
-        this.Jump(iterator, 1);
+        this.Jump(1);
         this.health = this.health - 1;
         //System.out.println("New health == " + this.health);
         if (health % 50 == 0) {
@@ -28,7 +28,7 @@ public class Rabbit extends Animal {
     }
 
     @Override
-    public void Jump(Iterator iterator, double Jump_size)
+    public void Jump(double Jump_size)
     {
         Random r = new Random();
         Coordinates old = this.coords;

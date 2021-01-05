@@ -38,7 +38,7 @@ public class Wolf extends Animal {
             System.out.println("Wolf: too exhausted, stamina == " + stamina);
             stamina += staminaRestoreSpeed; // restore stamina
         }
-        this.Jump(iterator, 10);
+        this.Jump(10);
         health--;
         if (health < deathThreshhold) {
             System.out.println("Wolf: died because health == " + health);
@@ -53,7 +53,7 @@ public class Wolf extends Animal {
     }
 
     @Override
-    public void Jump(Iterator iterator, double Jump_size)
+    public void Jump(double Jump_size)
     {
         Random r = new Random();
         Coordinates old = this.coords;
