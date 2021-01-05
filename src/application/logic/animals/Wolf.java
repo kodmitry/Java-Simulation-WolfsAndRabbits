@@ -52,19 +52,6 @@ public class Wolf extends Animal {
         animals.add(wolf);
     }
 
-    @Override
-    public void Jump(double Jump_size)
-    {
-        Random r = new Random();
-        Coordinates old = this.coords;
-        Coordinates newCoords;
-        do {
-            newCoords = new Coordinates(old.x + r.nextDouble() * 2 * Jump_size - Jump_size,old.y +
-                    r.nextDouble() * 2 * Jump_size - Jump_size);
-        } while(newCoords.x < 0 || newCoords.y < 0);
-        this.coords = newCoords;
-    }
-
     public Animal findNearbyPray(LinkedBlockingQueue<Animal> animals)
     {
         Animal minAnimal = null;

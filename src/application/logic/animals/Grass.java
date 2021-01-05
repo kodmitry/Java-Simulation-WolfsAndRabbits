@@ -21,8 +21,8 @@ public class Grass extends Animal {
     }
 
     @Override
-    public void Jump(double Jump_size) throws Exception
+    public void Jump(double Jump_size)
     {
-        throw new Exception("Grass object should never call .Jump method");
+        // do nothing
     }
 }

@@ -7,6 +7,8 @@ import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class SimulationHandler {
+    public static int WINDOW_WIDTH;
+    public static int WINDOW_HEIGHT;
     public static int BestTime;
     //public static final int basevar = 100;
     public static LinkedBlockingQueue<Animal> animals;
@@ -19,6 +21,8 @@ public class SimulationHandler {
     {
         // Initialize variables
         InitializeVariables();
+        WINDOW_WIDTH = width;
+        WINDOW_HEIGHT = height;
         // Start main routine
         int Iterations = 0;
         SimulData CurrentRunData = new SimulData(20, 1, 10); // TODO : should not be 0 0 0
