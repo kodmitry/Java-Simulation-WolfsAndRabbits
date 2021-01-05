@@ -23,7 +23,7 @@ public class SimulationHandler {
         InitializeVariables();
         // Start main routine
         int Iterations = 0;
-        SimulData CurrentRunData = new SimulData(20, 2, 10); // TODO : should not be 0 0 0
+        SimulData CurrentRunData = new SimulData(20, 1, 10); // TODO : should not be 0 0 0
         // Lets run our simulation routine to figure out the best possible starting variables
         while (!IsSatisfied() && Iterations < getMaximumExperimentsCount())
         {

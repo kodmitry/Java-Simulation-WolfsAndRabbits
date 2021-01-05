@@ -11,19 +11,13 @@ public class Grass extends Animal {
     }
     @Override
     public void DoTask(Iterator iterator, LinkedBlockingQueue<Animal> animals) {
-        System.out.println("Grass.DoTask()");
+        /*System.out.println("Grass.DoTask()");*/
     }
     @Override
     public void SpawnAt(LinkedBlockingQueue<Animal> animals, int x, int y)
     {
         Grass grass = new Grass(50, new Coordinates(x,y));
         animals.add(grass);
-    }
-
-    @Override
-    public void Kill(Iterator iterator)
-    {
-        iterator.remove();
     }
 
     @Override

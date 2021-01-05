@@ -9,7 +9,7 @@ public class Rabbit extends Animal {
     public void DoTask(Iterator iterator, LinkedBlockingQueue<Animal> animals) {
         this.Jump(iterator, 1);
         this.health = this.health - 1;
-        System.out.println("New health == " + this.health);
+        //System.out.println("New health == " + this.health);
         if (health % 50 == 0) {
             //System.out.println("Creating new rabbit");
             //this.Reproduce(animals);
@@ -25,12 +25,6 @@ public class Rabbit extends Animal {
     {
         Rabbit rabbit = new Rabbit(50, new Coordinates(x,y));
         animals.add(rabbit);
-    }
-
-    @Override
-    public void Kill(Iterator iterator)
-    {
-        iterator.remove();
     }
 
     @Override

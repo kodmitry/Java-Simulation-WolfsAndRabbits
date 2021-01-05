@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 public class WindowHandler extends JPanel {
     enum AnimalColors {
-        RABBIT(Color.orange), WOLF(Color.red), GRASS(Color.green);
+        RABBIT(Color.black), WOLF(Color.red), GRASS(Color.green);
         private Color color;
         AnimalColors(Color color)
         {
@@ -24,24 +24,26 @@ public class WindowHandler extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        LinkedBlockingQueue<Animal> animals = SimulationHandler.animals;
         super.paint(g);
+        LinkedBlockingQueue<Animal> animals = SimulationHandler.animals;
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         Iterator iterator = animals.iterator();
         while (iterator.hasNext()) {
             Animal animal = (Animal)iterator.next();
             if (animal instanceof Rabbit) {
                 g2d.setColor(AnimalColors.RABBIT.color);
+                g2d.fillOval((int)animal.coords.x, (int)animal.coords.y, 5, 5);
             }
             if (animal instanceof Wolf) {
                 g2d.setColor(AnimalColors.WOLF.color);
+                g2d.fillOval((int)animal.coords.x, (int)animal.coords.y, 7, 7);
+
             }
             if (animal instanceof Grass) {
                 g2d.setColor(AnimalColors.GRASS.color);
+                g2d.fillOval((int)animal.coords.x, (int)animal.coords.y, 10, 10);
             }
-            g2d.fillOval((int)animal.coords.x, (int)animal.coords.y, 7, 7);
         }
     }
 
@@ -52,7 +54,6 @@ public class WindowHandler extends JPanel {
         frame.setSize(width, height);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         return game;
     }
 }
