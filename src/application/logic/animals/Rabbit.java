@@ -6,7 +6,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Rabbit extends Animal {
     @Override
-    public void DoTask(Iterator iterator, LinkedBlockingQueue<Animal> animals) {
+    public void DoTask(LinkedBlockingQueue<Animal> animals) {
         this.Jump(1);
         this.health = this.health - 1;
         //System.out.println("New health == " + this.health);

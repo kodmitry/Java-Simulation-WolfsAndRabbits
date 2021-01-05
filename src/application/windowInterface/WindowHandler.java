@@ -9,13 +9,12 @@ import application.logic.animals.Wolf;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class WindowHandler extends JPanel {
     enum AnimalColors {
         RABBIT(Color.black), WOLF(Color.red), GRASS(Color.green);
-        private Color color;
+        private final Color color;
         AnimalColors(Color color)
         {
             this.color = color;

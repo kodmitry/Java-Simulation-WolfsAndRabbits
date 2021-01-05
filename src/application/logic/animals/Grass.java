@@ -10,7 +10,7 @@ public class Grass extends Animal {
         this.coords = coords;
     }
     @Override
-    public void DoTask(Iterator iterator, LinkedBlockingQueue<Animal> animals) {
+    public void DoTask(LinkedBlockingQueue<Animal> animals) {
         /*System.out.println("Grass.DoTask()");*/
     }
     @Override

@@ -2,6 +2,7 @@ package application.logic;
 import application.logic.animals.*;
 import application.windowInterface.WindowHandler;
 
+import javax.swing.*;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -25,7 +26,7 @@ public class SimulationHandler {
         WINDOW_HEIGHT = height;
         // Start main routine
         int Iterations = 0;
-        SimulData CurrentRunData = new SimulData(20, 1, 10); // TODO : should not be 0 0 0
+        SimulData CurrentRunData = new SimulData(30, 2, 10); // TODO : should not be 0 0 0
         // Lets run our simulation routine to figure out the best possible starting variables
         while (!IsSatisfied() && Iterations < getMaximumExperimentsCount())
         {
@@ -49,7 +50,7 @@ public class SimulationHandler {
         // Count of tasks = time since this simulation had started
         int CompletedTasksCount = 0;
         // Creating thread-safe queue (FIFO) of all the animals alive on the field
-        animals= new LinkedBlockingQueue<Animal>();
+        animals = new LinkedBlockingQueue<Animal>();
         // Adding base amount of animals
         QueueAddRabbits(Data.RabbitsCount, animals, 1000, width, height);
         QueueAddWolfs(Data.WolfsCount, animals, 3000, width, height);
@@ -62,7 +63,7 @@ public class SimulationHandler {
             Iterator iterator = animals.iterator();
             while (iterator.hasNext()) {
                 Animal animal = (Animal)iterator.next();
-                animal.DoTask(iterator, animals);
+                animal.DoTask(animals);
             }
             window.repaint();
             Thread.sleep(10);
