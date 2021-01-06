@@ -58,9 +58,8 @@ public class SimulationHandler {
         while (animals.size() != 0 && CompletedTasksCount < Integer.MAX_VALUE) // TODO: not safe cuz movescount
         {
             CompletedTasksCount++;
-            Iterator iterator = animals.iterator();
-            while (iterator.hasNext()) {
-                Animal animal = (Animal)iterator.next();
+            for (Animal animal : animals)
+            {
                 animal.DoTask(animals);
             }
             window.repaint();
