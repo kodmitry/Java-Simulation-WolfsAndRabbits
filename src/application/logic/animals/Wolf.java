@@ -1,7 +1,5 @@
 package application.logic.animals;
 
-import application.windowInterface.WindowHandler;
-
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -23,7 +21,6 @@ public class Wolf extends Animal {
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
         if (stamina == maxStamina) {
-            /*System.out.println("Wolf is looking for a pray");*/
             Animal pray = findNearbyPray(animals);
             if (pray != null) {
                 if (this.distanceTo(pray) <= (double)attackRange) {
@@ -39,7 +36,6 @@ public class Wolf extends Animal {
                     this.moveTowards(pray, 3);
                 }
              } else {
-                /*System.out.println("Wolf: no alive prays");*/
             }
         } else {
             System.out.println("Wolf: too exhausted, stamina == " + stamina);
@@ -52,13 +48,6 @@ public class Wolf extends Animal {
             Animal.Kill(this, animals);
         }
     }
-    //@Override
- /*   public static void SpawnAt(LinkedBlockingQueue<Animal> animals, Coordinates coords, int baseHealth)
-    {
-        Wolf wolf = new Wolf(baseHealth, coords);
-        animals.add(wolf);
-    }
-*/
     public Animal findNearbyPray(LinkedBlockingQueue<Animal> animals)
     {
         Animal minAnimal = null;

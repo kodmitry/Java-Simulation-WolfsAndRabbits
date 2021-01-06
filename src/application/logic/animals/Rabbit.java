@@ -1,15 +1,14 @@
 package application.logic.animals;
 
 import java.util.Iterator;
-import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Rabbit extends Animal {
-    private static final int deathThreshhold = 20; // when health is below this value, call death method
+    private static final int deathThreshold = 20; // when health is below this value, call death method
     private static final int maxStamina = 100;
     private static final float attackRange = 10.0f;
-    private final int staminaRestoreSpeed = 1; // for staminaRS == 1 wolf is gonna restore 1 point of stamina per tick
-    private int stamina = 0; // for CD in [0,maxStamina) range lets wolf to wonder, CD == maxStamina is rdy to attack
+    private final int staminaRestoreSpeed = 1; // for staminaRS == 1 rabbit is gonna restore 1 point of stamina per tick
+    private int stamina = 0; // for CD in [0,maxStamina) range lets rabbit to wonder, CD == maxStamina is rdy to attack
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
         if (stamina == maxStamina) {
@@ -25,7 +24,7 @@ public class Rabbit extends Animal {
                     this.moveTowards(grass, 0.5);
                 }
             } else {
-                /*System.out.println("Wolf: no alive prays");*/
+                // no alive grass
             }
         } else {
             System.out.println("Wolf: too exhausted, stamina == " + stamina);
@@ -33,7 +32,7 @@ public class Rabbit extends Animal {
         }
         this.Jump(0.5);
         health--;
-        if (health < deathThreshhold) {
+        if (health < deathThreshold) {
             System.out.println("Wolf: died because health == " + health);
             Animal.Kill(this, animals);
         }
@@ -42,12 +41,6 @@ public class Rabbit extends Animal {
         this.health = health;
         this.coords = coords;
     }
-    //@Override
-/*    public static void SpawnAt(LinkedBlockingQueue<Animal> animals, Coordinates coords, int baseHealth)
-    {
-        Rabbit rabbit = new Rabbit(baseHealth, coords);
-        animals.add(rabbit);
-    }*/
     public Animal findNearbyGrass(LinkedBlockingQueue<Animal> animals)
     {
         Animal minAnimal = null;

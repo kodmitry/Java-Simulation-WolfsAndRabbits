@@ -13,7 +13,9 @@ import javax.swing.*;
 
 public class WindowHandler extends JPanel {
     enum AnimalColors {
-        RABBIT(Color.black), WOLF(Color.red), GRASS(Color.green);
+        RABBIT(Color.black),
+        WOLF(Color.red),
+        GRASS(Color.green);
         private final Color color;
         AnimalColors(Color color)
         {
@@ -47,7 +49,7 @@ public class WindowHandler extends JPanel {
     }
 
     public static WindowHandler CreateWindow(int width, int height){
-        JFrame frame = new JFrame("WolfsAndRabbits");
+        JFrame frame = new JFrame("Wolfs and Rabbits");
         WindowHandler game = new WindowHandler();
         frame.add(game);
         frame.setSize(width, height);

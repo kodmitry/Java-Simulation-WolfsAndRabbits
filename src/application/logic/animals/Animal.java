@@ -1,16 +1,15 @@
 package application.logic.animals;
 
 import application.logic.SimulationHandler;
-
-import java.awt.*;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public abstract class Animal
 {
     public enum TypeOfAnimal {
-        RABBIT, WOLF(), GRASS();
+        RABBIT,
+        WOLF,
+        GRASS
     }
     public int health;
     public Coordinates coords;

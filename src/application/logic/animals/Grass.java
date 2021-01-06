@@ -11,15 +11,8 @@ public class Grass extends Animal {
     }
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
-        /*System.out.println("Grass.DoTask()");*/
-    }
-    //@Override
-/*    public static void SpawnAt(LinkedBlockingQueue<Animal> animals, Coordinates coords, int baseHealth)
-    {
-        Grass grass = new Grass(baseHealth, coords);
-        animals.add(grass);
-    }*/
 
+    }
     @Override
     public void Jump(double Jump_size)
     {
