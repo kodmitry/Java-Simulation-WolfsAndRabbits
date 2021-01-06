@@ -9,10 +9,25 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public abstract class Animal
 {
+    public enum TypeOfAnimal {
+        RABBIT, WOLF(), GRASS();
+    }
     public int health;
     public Coordinates coords;
     public abstract void DoTask(LinkedBlockingQueue<Animal> animals);
-    public abstract void SpawnAt(LinkedBlockingQueue<Animal> animals, int x, int y);
+
+    public static void SpawnAt(TypeOfAnimal type, LinkedBlockingQueue<Animal> animals, Coordinates coords, int baseHealth)
+    {
+        Animal animal = null;
+        if (type == TypeOfAnimal.GRASS)
+            animal = new Grass(baseHealth, coords);
+        if (type == TypeOfAnimal.RABBIT)
+            animal = new Rabbit(baseHealth, coords);
+        if (type == TypeOfAnimal.WOLF)
+            animal = new Wolf(baseHealth, coords);
+        animals.add(animal);
+    }
+
     public void Jump(double Jump_size)
     {
         int width = SimulationHandler.WINDOW_WIDTH;
@@ -43,5 +58,14 @@ public abstract class Animal
         } else {
             this.coords.y = this.coords.y - speed;
         }
+    }
+
+    public double distanceTo(Animal animal)
+    {
+        double x1 = this.coords.x;
+        double y1 = this.coords.y;
+        double x2 = animal.coords.x;
+        double y2 = animal.coords.y;
+        return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
     }
 }

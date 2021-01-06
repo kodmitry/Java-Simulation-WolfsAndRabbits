@@ -52,13 +52,13 @@ public class Wolf extends Animal {
             Animal.Kill(this, animals);
         }
     }
-    @Override
-    public void SpawnAt(LinkedBlockingQueue<Animal> animals, int x, int y)
+    //@Override
+ /*   public static void SpawnAt(LinkedBlockingQueue<Animal> animals, Coordinates coords, int baseHealth)
     {
-        Wolf wolf = new Wolf(50, new Coordinates(x,y));
+        Wolf wolf = new Wolf(baseHealth, coords);
         animals.add(wolf);
     }
-
+*/
     public Animal findNearbyPray(LinkedBlockingQueue<Animal> animals)
     {
         Animal minAnimal = null;
@@ -83,14 +83,7 @@ public class Wolf extends Animal {
         }
         return minAnimal;
     }
-    public double distanceTo(Animal animal)
-    {
-        double x1 = this.coords.x;
-        double y1 = this.coords.y;
-        double x2 = animal.coords.x;
-        double y2 = animal.coords.y;
-        return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
-    }
+
     public boolean tryToKill(Animal animal, LinkedBlockingQueue<Animal> animals)
     {
         System.out.println("Wolf.tryToKill");

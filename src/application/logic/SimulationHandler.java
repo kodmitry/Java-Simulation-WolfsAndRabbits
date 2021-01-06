@@ -91,8 +91,7 @@ public class SimulationHandler {
         Random rand = new Random();
         for (int i = 0; i < n; i++) {
             Coordinates coords = new Coordinates(rand.nextInt(width + 1), rand.nextInt(height + 1));
-            Rabbit rabbit = new Rabbit(baseHealth, coords);
-            animals.add(rabbit);
+            Animal.SpawnAt(Animal.TypeOfAnimal.RABBIT, animals, coords, baseHealth);
         }
     }
     private static void QueueAddWolfs(int n, LinkedBlockingQueue<Animal> animals, int baseHealth, int width, int height) // Adds to random x y coordinates
@@ -100,8 +99,7 @@ public class SimulationHandler {
         Random rand = new Random();
         for (int i = 0; i < n; i++) {
             Coordinates coords = new Coordinates(rand.nextInt(width + 1), rand.nextInt(height + 1));
-            Wolf wolf = new Wolf(baseHealth, coords);
-            animals.add(wolf);
+            Animal.SpawnAt(Animal.TypeOfAnimal.WOLF, animals, coords, baseHealth);
         }
     }
     private static void QueueAddGrass(int n, LinkedBlockingQueue<Animal> animals, int baseHealth, int width, int height) // Adds to random x y coordinates
@@ -109,8 +107,7 @@ public class SimulationHandler {
         Random rand = new Random();
         for (int i = 0; i < n; i++) {
             Coordinates coords = new Coordinates(rand.nextInt(width + 1), rand.nextInt(height + 1));
-            Grass grass = new Grass(baseHealth, coords);
-            animals.add(grass);
+            Animal.SpawnAt(Animal.TypeOfAnimal.GRASS, animals, coords, baseHealth);
         }
     }
 
