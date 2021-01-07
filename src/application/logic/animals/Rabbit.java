@@ -1,6 +1,5 @@
 package application.logic.animals;
 
-import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Rabbit extends Animal {

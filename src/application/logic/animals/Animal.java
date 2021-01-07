@@ -1,7 +1,6 @@
 package application.logic.animals;
 
 import application.logic.SimulationHandler;
-import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public abstract class Animal
@@ -29,16 +28,9 @@ public abstract class Animal
 
     public void Jump(double Jump_size)
     {
-        int width = SimulationHandler.WINDOW_WIDTH;
-        int height = SimulationHandler.WINDOW_HEIGHT;
-        Random r = new Random();
-        Coordinates old = this.coords;
-        Coordinates newCoords;
-        do {
-            newCoords = new Coordinates(old.x + r.nextDouble() * 2 * Jump_size - Jump_size,old.y +
-                    r.nextDouble() * 2 * Jump_size - Jump_size);
-        } while(newCoords.x < 0 || newCoords.y < 0 || newCoords.x > width || newCoords.y > height);
-        this.coords = newCoords;
+        int width = SimulationHandler.W_WIDTH;
+        int height = SimulationHandler.W_HEIGHT;
+        this.coords = Coordinates.random(this.coords, Jump_size, width, height);
     }
     public static void Kill(Animal animal, LinkedBlockingQueue<Animal> animals)
     {

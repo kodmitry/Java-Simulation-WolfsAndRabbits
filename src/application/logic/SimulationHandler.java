@@ -2,13 +2,12 @@ package application.logic;
 import application.logic.animals.*;
 import application.windowInterface.WindowHandler;
 
-import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class SimulationHandler {
-    public static int WINDOW_WIDTH;
-    public static int WINDOW_HEIGHT;
+    public static int W_WIDTH;
+    public static int W_HEIGHT;
     public static int BestTime;
     public static LinkedBlockingQueue<Animal> animals;
     private static SimulData CurrentBestRun = new SimulData(0,0,0);
@@ -20,8 +19,8 @@ public class SimulationHandler {
     {
         // Initialize variables
         InitializeVariables();
-        WINDOW_WIDTH = width;
-        WINDOW_HEIGHT = height;
+        W_WIDTH = width;
+        W_HEIGHT = height;
         // Start main routine
         int Iterations = 0;
         SimulData CurrentRunData = new SimulData(30, 2, 10); // TODO : should not be 0 0 0

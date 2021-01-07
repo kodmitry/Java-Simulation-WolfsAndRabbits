@@ -1,12 +1,11 @@
 package application.logic.animals;
 
-import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Wolf extends Animal {
     private static final int maxStamina = 100;
-    private static final float baseLethalityRate = 0.5f; // a chance of killing a nearby rabbit when wolf is healthy
+    private static final float baseLethalityRate = 0.8f; // a chance of killing a nearby rabbit when wolf is healthy
     private static final float exhaustedLethalityRate = 0.5f; // same, but when wolf is exhausted
     private static final float attackRange = 10.0f;
     private static final int deathThreshhold = 20; // when health is below this value, call self destruction
