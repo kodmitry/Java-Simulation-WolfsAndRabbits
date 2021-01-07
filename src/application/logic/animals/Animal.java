@@ -67,4 +67,9 @@ public abstract class Animal
         double y2 = animal.coords.y;
         return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
     }
+
+    public void dealDamage(Animal animal, int damage)
+    {
+        animal.health = animal.health - damage;
+    }
 }

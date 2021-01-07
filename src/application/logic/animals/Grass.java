@@ -11,7 +11,11 @@ public class Grass extends Animal {
     }
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
-
+        health++;
+        if (health <= 0)
+        {
+            Animal.Kill(this, animals);
+        }
     }
     @Override
     public void Jump(double Jump_size)

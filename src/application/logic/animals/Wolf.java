@@ -17,6 +17,7 @@ public class Wolf extends Animal {
     public Wolf(int health, Coordinates coords) {
         this.health = health;
         this.coords = coords;
+        this.stamina = 100;
     }
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {

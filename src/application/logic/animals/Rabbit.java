@@ -5,36 +5,27 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Rabbit extends Animal {
     private static final int deathThreshold = 20; // when health is below this value, call death method
-    private static final int maxStamina = 100;
     private static final float attackRange = 10.0f;
-    private final int staminaRestoreSpeed = 1; // for staminaRS == 1 rabbit is gonna restore 1 point of stamina per tick
-    private int stamina = 0; // for CD in [0,maxStamina) range lets rabbit to wonder, CD == maxStamina is rdy to attack
+    private static final int attackStrength = 1; // how much damage per tick rabbit is gonna do to enemies
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
-        if (stamina == maxStamina) {
-            Animal grass = findNearbyGrass(animals);
-            if (grass != null) {
-                if (this.distanceTo(grass) <= (double)attackRange) {
-                    stamina = 0;
-                    System.out.println("Rabbit: Grass is in attack range, eating, stamina is " + stamina);
-                    Kill(grass, animals);
-                    System.out.println("Eaten successful");
-                    health = health + 100;
-                } else {
-                    this.moveTowards(grass, 0.5);
-                }
+        Animal grass = findNearbyGrass(animals);
+        if (grass != null) {
+            if (this.distanceTo(grass) <= (double) attackRange) {
+                System.out.println("Rabbit: Grass is in attack range, eating");
+                dealDamage(grass, attackStrength);
+                health = health + 100;
             } else {
-                // no alive grass
+                this.moveTowards(grass, 0.5);
+            }
+            this.Jump(0.5);
+            health--;
+            if (health < deathThreshold) {
+                System.out.println("Rabbit: died because health == " + health);
+                Animal.Kill(this, animals);
             }
         } else {
-            System.out.println("Wolf: too exhausted, stamina == " + stamina);
-            stamina += staminaRestoreSpeed; // restore stamina
-        }
-        this.Jump(0.5);
-        health--;
-        if (health < deathThreshold) {
-            System.out.println("Wolf: died because health == " + health);
-            Animal.Kill(this, animals);
+            this.Jump(2);
         }
     }
     public Rabbit(int health, Coordinates coords) {
