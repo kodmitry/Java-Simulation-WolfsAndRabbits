@@ -8,10 +8,12 @@ public class Wolf extends Animal {
     private static final float baseLethalityRate = 0.8f; // a chance of killing a nearby rabbit when wolf is healthy
     private static final float exhaustedLethalityRate = 0.5f; // same, but when wolf is exhausted
     private static final float attackRange = 10.0f;
-    private static final int deathThreshhold = 20; // when health is below this value, call self destruction
+    private static final int deathThreshold = 20; // when health is below this value, call self destruction
+    private static final int maxReproductionRate = 300;
+    private static final int staminaRestoreSpeed = 1; // for staminaRS == 1 wolf is gonna restore 1 point of stamina per tick
 
     private int stamina = 0; // for CD in [0,maxStamina) range lets wolf to wonder, CD == maxStamina is rdy to attack
-    private final int staminaRestoreSpeed = 1; // for staminaRS == 1 wolf is gonna restore 1 point of stamina per tick
+    private int reproductionRate = 0;
 
     public Wolf(int health, Coordinates coords) {
         this.health = health;
@@ -43,7 +45,7 @@ public class Wolf extends Animal {
         }
         this.Jump(0.5);
         health--;
-        if (health < deathThreshhold) {
+        if (health < deathThreshold) {
             System.out.println("Wolf: died because health == " + health);
             Animal.Kill(this, animals);
         }

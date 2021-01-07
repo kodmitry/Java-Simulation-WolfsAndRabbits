@@ -6,6 +6,8 @@ public class Rabbit extends Animal {
     private static final int deathThreshold = 20; // when health is below this value, call death method
     private static final float attackRange = 10.0f;
     private static final int attackStrength = 1; // how much damage per tick rabbit is gonna do to enemies
+    private static final int maxReproductionRate = 300;
+    private int reproductionRate = 0;
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
         Animal grass = findNearby(TypeOfAnimal.GRASS, animals);
