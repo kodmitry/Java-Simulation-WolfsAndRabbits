@@ -9,7 +9,7 @@ public class Rabbit extends Animal {
     private static final int attackStrength = 1; // how much damage per tick rabbit is gonna do to enemies
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
-        Animal grass = findNearbyGrass(animals);
+        Animal grass = findNearby(TypeOfAnimal.GRASS, animals);
         if (grass != null) {
             if (this.distanceTo(grass) <= (double) attackRange) {
                 System.out.println("Rabbit: Grass is in attack range, eating");
@@ -31,29 +31,5 @@ public class Rabbit extends Animal {
     public Rabbit(int health, Coordinates coords) {
         this.health = health;
         this.coords = coords;
-    }
-    public Animal findNearbyGrass(LinkedBlockingQueue<Animal> animals)
-    {
-        Animal minAnimal = null;
-        double distMin = Double.MAX_VALUE;
-
-        Iterator iterAnimal = animals.iterator();
-        Animal animal;
-        while (iterAnimal.hasNext())
-        {
-            animal = (Animal)iterAnimal.next();
-            if (animal instanceof Grass)
-            {
-                double dist = this.distanceTo(animal);
-                if (dist < distMin)
-                {
-                    System.out.println(animal + ", dist = " + dist);
-                    System.out.println(iterAnimal);
-                    distMin = dist;
-                    minAnimal = animal;
-                }
-            }
-        }
-        return minAnimal;
     }
 }

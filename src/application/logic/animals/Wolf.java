@@ -22,7 +22,7 @@ public class Wolf extends Animal {
     @Override
     public void DoTask(LinkedBlockingQueue<Animal> animals) {
         if (stamina == maxStamina) {
-            Animal pray = findNearbyPray(animals);
+            Animal pray = findNearby(TypeOfAnimal.RABBIT, animals);
             if (pray != null) {
                 if (this.distanceTo(pray) <= (double)attackRange) {
                     stamina = 0;
@@ -49,31 +49,6 @@ public class Wolf extends Animal {
             Animal.Kill(this, animals);
         }
     }
-    public Animal findNearbyPray(LinkedBlockingQueue<Animal> animals)
-    {
-        Animal minAnimal = null;
-        double distMin = Double.MAX_VALUE;
-
-        Iterator iterAnimal = animals.iterator();
-        Animal animal;
-        while (iterAnimal.hasNext())
-        {
-            animal = (Animal)iterAnimal.next();
-            if (animal instanceof Rabbit)
-            {
-                double dist = this.distanceTo(animal);
-                if (dist < distMin)
-                {
-                    System.out.println(animal + ", dist = " + dist);
-                    System.out.println(iterAnimal);
-                    distMin = dist;
-                    minAnimal = animal;
-                }
-            }
-        }
-        return minAnimal;
-    }
-
     public boolean tryToKill(Animal animal, LinkedBlockingQueue<Animal> animals)
     {
         System.out.println("Wolf.tryToKill");

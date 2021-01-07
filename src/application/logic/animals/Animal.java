@@ -72,4 +72,25 @@ public abstract class Animal
     {
         animal.health = animal.health - damage;
     }
+
+    public Animal findNearby(TypeOfAnimal type, LinkedBlockingQueue<Animal> animals)
+    {
+        Animal minAnimal = null;
+        double distMin = Double.MAX_VALUE;
+        for (Animal animal : animals)
+        {
+            if (animal instanceof Grass && type == TypeOfAnimal.GRASS ||
+                    animal instanceof Wolf && type == TypeOfAnimal.WOLF ||
+                    animal instanceof Rabbit && type == TypeOfAnimal.RABBIT)
+            {
+                double dist = this.distanceTo(animal);
+                if (dist < distMin)
+                {
+                    distMin = dist;
+                    minAnimal = animal;
+                }
+            }
+        }
+        return minAnimal;
+    }
 }
