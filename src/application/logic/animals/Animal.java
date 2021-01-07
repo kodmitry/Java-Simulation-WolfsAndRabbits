@@ -24,6 +24,7 @@ public abstract class Animal
         if (type == TypeOfAnimal.WOLF)
             animal = new Wolf(baseHealth, coords);
         animals.add(animal);
+
     }
 
     public void Jump(double Jump_size)
@@ -34,7 +35,6 @@ public abstract class Animal
     }
     public static void Kill(Animal animal, LinkedBlockingQueue<Animal> animals)
     {
-        System.out.println("Animal.Kill() " + animal);
         animals.remove(animal);
     }
     public void moveTowards(Animal target, double speed)

@@ -27,11 +27,9 @@ public class Wolf extends Animal {
             if (pray != null) {
                 if (this.distanceTo(pray) <= (double)attackRange) {
                     stamina = 0;
-                    System.out.println("Wolf: Pray is found, trying to kill, stamina is " + stamina);
                     boolean killed = tryToKill(pray, animals);
                     if (killed)
                     {
-                        System.out.println("Killed successful");
                         health = health + 100;
                     }
                 } else {
@@ -40,19 +38,16 @@ public class Wolf extends Animal {
              } else {
             }
         } else {
-            System.out.println("Wolf: too exhausted, stamina == " + stamina);
-            stamina += staminaRestoreSpeed; // restore stamina
+            stamina += staminaRestoreSpeed;
         }
         this.Jump(0.5);
         health--;
         if (health < deathThreshold) {
-            System.out.println("Wolf: died because health == " + health);
             Animal.Kill(this, animals);
         }
     }
     public boolean tryToKill(Animal animal, LinkedBlockingQueue<Animal> animals)
     {
-        System.out.println("Wolf.tryToKill");
         Random rand = new Random();
         float rolled = rand.nextFloat();
         float lethality;
@@ -61,7 +56,6 @@ public class Wolf extends Animal {
         } else {
             lethality = baseLethalityRate;
         }
-        System.out.println("Wolf: rolled = " + rolled + " lethality = " + lethality + " wolf's health: " + health);
         if (rolled < lethality) {
             Animal.Kill(animal, animals);
             return true;

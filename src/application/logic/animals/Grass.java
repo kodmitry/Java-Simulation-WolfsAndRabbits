@@ -6,7 +6,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Grass extends Animal {
     private static final int spreadRange = 10;
-    private static final int maxReproductionRate = 300;
+    private static final int maxReproductionRate = 500;
     private int reproductionRate = 0;
     public Grass(int health, Coordinates coords) {
         Random rand = new Random();
