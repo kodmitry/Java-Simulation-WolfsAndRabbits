@@ -8,7 +8,8 @@ public abstract class Animal
     public enum TypeOfAnimal {
         RABBIT,
         WOLF,
-        GRASS
+        GRASS,
+        DUMMY
     }
     public int health;
     public Coordinates coords;
@@ -23,6 +24,8 @@ public abstract class Animal
             animal = new Rabbit(baseHealth, coords);
         if (type == TypeOfAnimal.WOLF)
             animal = new Wolf(baseHealth, coords);
+        if (type == TypeOfAnimal.DUMMY)
+            animal = new Dummy(baseHealth, coords);
         animals.add(animal);
 
     }
@@ -84,5 +87,16 @@ public abstract class Animal
             }
         }
         return minAnimal;
+    }
+    public static int count(TypeOfAnimal type, LinkedBlockingQueue<Animal> animals) {
+        int count = 0;
+        for (Animal animal : animals) {
+            if (animal instanceof Grass && type == TypeOfAnimal.GRASS ||
+                    animal instanceof Wolf && type == TypeOfAnimal.WOLF ||
+                    animal instanceof Rabbit && type == TypeOfAnimal.RABBIT) {
+                count++;
+            }
+        }
+        return count;
     }
 }

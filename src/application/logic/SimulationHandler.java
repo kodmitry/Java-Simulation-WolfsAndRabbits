@@ -23,7 +23,7 @@ public class SimulationHandler {
         W_HEIGHT = height;
         // Start main routine
         int Iterations = 0;
-        SimulData CurrentRunData = new SimulData(30, 2, 10); // TODO : should not be 0 0 0
+        SimulData CurrentRunData = new SimulData(50, 4, 30); // TODO : should not be 0 0 0
         // Lets run our simulation routine to figure out the best possible starting variables
         while (!IsSatisfied() && Iterations < getMaximumExperimentsCount())
         {
@@ -60,6 +60,7 @@ public class SimulationHandler {
             for (Animal animal : animals)
             {
                 animal.DoTask(animals);
+                System.out.println("Current amount of grass == " + Animal.count(Animal.TypeOfAnimal.GRASS, animals));
             }
             window.repaint();
             Thread.sleep(10);

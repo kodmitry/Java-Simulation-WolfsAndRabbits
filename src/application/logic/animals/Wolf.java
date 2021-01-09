@@ -40,8 +40,9 @@ public class Wolf extends Animal {
         } else {
             stamina += staminaRestoreSpeed;
         }
-        this.Jump(0.5);
-        health--;
+        //this.Jump(0.5);
+        this.Jump(1.5);
+        //health--;
         if (health < deathThreshold) {
             Animal.Kill(this, animals);
         }
